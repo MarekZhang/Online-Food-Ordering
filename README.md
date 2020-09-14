@@ -1,2 +1,2 @@
 # Online-Food-Ordering
-SpringBoot + WechatApp
+SpringBoot + WechatApp + Vue.js
