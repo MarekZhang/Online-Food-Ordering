@@ -16,6 +16,7 @@ public enum ExceptionEnum {
   PAYMENT_STATUS_ERROR(17, "payment status error"),
   CART_EMPTY_ERROR(18, "cart cannot be empty"),
   UNAUTHORIZED_USER(19, "order does not belong to current user"),
+  WECHAT_MPSERVICE_ERROR(20, "weChat mp service error"),
   ;
   private Integer code;
   private String msg;

@@ -11,3 +11,7 @@ spring:
 
 server:
   context-path: /sell
+
+weChat:
+  appId: wx292fb7a3ffd17def
+  appsecret: 8b7480add5af214ee585e9eed6f9a73f
