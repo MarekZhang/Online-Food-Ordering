@@ -9,6 +9,25 @@ import lombok.Data;
 @Component
 @ConfigurationProperties(prefix = "weChat")//corresponds to the yaml config file
 public class WeChatAccountConfig {
-  String appId;
-  String appsecret;
+  private String appId;
+  private String appsecret;
+  /**
+   * 商户号
+   */
+  private String mchId;
+
+  /**
+   * 商户密钥
+   */
+  private String mchKey;
+
+  /**
+   * 商户证书路径
+   */
+  private String keyPath;
+
+  /**
+   * 异步通知url
+   */
+  private String notifyUrl;
 }
