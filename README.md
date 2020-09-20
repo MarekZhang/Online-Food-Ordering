@@ -14,7 +14,6 @@ SpringBoot 1.5.2
 - 1. Download this repo</br>
 - 2. Build project
 ```shell
-cd Lucene-Search-News-Engine/ir_artifact
 ```
 ```shell
 mvn clean
