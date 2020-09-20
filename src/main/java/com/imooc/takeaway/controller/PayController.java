@@ -11,8 +11,11 @@ import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
@@ -35,8 +38,8 @@ public class PayController {
   PayService payService;
 
   /**
-   * create payment proxy url
-   * http://proxy.springboot.cn/pay?openid=${OPENID}&orderId=${ORDER_ID}&returnUrl=${RETURN_URL}
+   * create payment proxy url http://proxy.springboot.cn/pay?openid=${OPENID}&orderId=${ORDER_ID}&returnUrl=${RETURN_URL}
+   *
    * @param orderId
    * @param returnUrl
    * @param map
@@ -45,16 +48,17 @@ public class PayController {
   @GetMapping("/create")
   public ModelAndView create(@RequestParam("orderId") String orderId,
                              @RequestParam("returnUrl") String returnUrl,
-                             Map<String,Object> map) {
+                             Map<String, Object> map) {
     //1. find the order
     OrderDTO order = orderService.findOne(orderId);
-    if(order==null)
+    if (order == null)
       throw new OrderException(ExceptionEnum.ORDER_NOT_EXIST);
 
     //2. pay the order
     PayResponse payResponse = payService.create(order);
 
     map.put("payResponse", payResponse);
+    returnUrl = returnUrl + "/#/order/" + orderId;
     try {
       map.put("returnUrl", URLDecoder.decode(returnUrl, StandardCharsets.UTF_8.name()));
     } catch (UnsupportedEncodingException e) {
@@ -86,4 +90,21 @@ public class PayController {
     return "redirect:" + redirectUrl;
   }
 
+  /**
+   * payment process https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4 step 11, return
+   * payment result to weChat platform
+   * <xml>
+   * <return_code><![CDATA[SUCCESS]]></return_code>
+   * <return_msg><![CDATA[OK]]></return_msg>
+   * </xml>
+   *
+   * @param notifyData
+   * @return
+   */
+  @PostMapping("/notify")
+  public ModelAndView notify(@RequestBody String notifyData) {
+    PayResponse payResponse = payService.notify(notifyData);
+
+    return new ModelAndView("pay/success");
+  }
 }

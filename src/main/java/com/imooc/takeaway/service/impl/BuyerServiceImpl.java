@@ -32,10 +32,11 @@ public class BuyerServiceImpl implements BuyerService {
   private OrderDTO authorization(String openid, String orderID) {
     OrderDTO orderDTO = orderService.findOne(orderID);
     if (orderDTO == null) {
-      return null;
+      log.error("[cancel order], order does not exists");
+      throw new OrderException(ExceptionEnum.ORDER_NOT_EXIST);
     }
     if (!openid.equalsIgnoreCase(orderDTO.getBuyerOpenid())) {
-      log.error("[find order] error, order does not belong to current user openid={}, orderDTO={}", openid, orderDTO);
+      log.error("[cancel order], order does not belong to current user openid={}, orderDTO={}", openid, orderDTO);
       throw new OrderException(ExceptionEnum.UNAUTHORIZED_USER);
     }
     return orderDTO;

@@ -13,6 +13,7 @@ import com.imooc.takeaway.exception.OrderException;
 import com.imooc.takeaway.repository.OrderDetailRepository;
 import com.imooc.takeaway.repository.OrderMasterRepository;
 import com.imooc.takeaway.service.OrderService;
+import com.imooc.takeaway.service.PayService;
 import com.imooc.takeaway.service.ProductInfoService;
 import com.imooc.takeaway.utils.KeyUtil;
 
@@ -28,6 +29,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +43,8 @@ public class OrderServiceImpl implements OrderService {
   OrderDetailRepository orderDetailRepository;
   @Autowired
   OrderMasterRepository orderMasterRepository;
+  @Resource(name = "PayService")
+  PayService payService;
 
   @Override
   @Transactional
@@ -146,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
     productInfoService.increaseStock(cart);
     //4. refund
     if (orderDTO.getPayStatus().equals(PaymentStatusEnum.PAID.getCode())) {
-      //TODO
+      payService.cancel(orderDTO);
     }
 
     return orderDTO;
