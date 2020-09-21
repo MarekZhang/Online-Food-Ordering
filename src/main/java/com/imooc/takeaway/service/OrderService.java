@@ -25,4 +25,7 @@ public interface OrderService {
 
   //6.pay for an order
   OrderDTO pay(OrderDTO orderDTO);
+
+  //7.find all orders -- used for the vendor side
+  Page<OrderDTO> findAll(Pageable pageable);
 }

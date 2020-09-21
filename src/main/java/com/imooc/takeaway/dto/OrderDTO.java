@@ -1,8 +1,13 @@
 package com.imooc.takeaway.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.imooc.takeaway.domain.OrderDetail;
+import com.imooc.takeaway.enums.OrderStatusEnum;
+import com.imooc.takeaway.enums.PaymentStatusEnum;
+import com.imooc.takeaway.enums.StatusEnum;
+import com.imooc.takeaway.utils.EnumUtil;
 import com.imooc.takeaway.utils.serializer.Date2LongSerializer;
 
 import java.math.BigDecimal;
@@ -45,4 +50,15 @@ public class OrderDTO {
 
   private List<OrderDetail> orderDetailList;
 
+  //should not be transferred to the front end
+  @JsonIgnore
+  public OrderStatusEnum getOrderStatusEnum() {
+    return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+  }
+
+  //should not be transferred to the front end
+  @JsonIgnore
+  public PaymentStatusEnum getPaymentStatusEnum() {
+    return EnumUtil.getByCode(payStatus, PaymentStatusEnum.class);
+  }
 }

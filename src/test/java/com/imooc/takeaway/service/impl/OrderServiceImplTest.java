@@ -95,4 +95,10 @@ public class OrderServiceImplTest {
     log.info("[pay order] result{}", dto);
     Assert.assertEquals(dto.getPayStatus(), PaymentStatusEnum.PAID.getCode());
   }
+
+  @Test
+  public void findAll(){
+    Page<OrderDTO> dtoPage = service.findAll(new PageRequest(0, 10));
+    Assert.assertNotEquals(0, dtoPage.getTotalElements());
+  }
 }

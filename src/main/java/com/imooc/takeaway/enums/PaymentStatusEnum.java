@@ -3,7 +3,7 @@ package com.imooc.takeaway.enums;
 import lombok.Getter;
 
 @Getter
-public enum PaymentStatusEnum {
+public enum PaymentStatusEnum implements StatusEnum{
   PENDING(0, "waiting for payment"),
   PAID(1, "order has been paid");
 
