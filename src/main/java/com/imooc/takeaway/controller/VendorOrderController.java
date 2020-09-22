@@ -43,7 +43,7 @@ class VendorOrderController {
     map.put("orderList", orderList);
     map.put("page", page);
     map.put("size", size);
-    return new ModelAndView("vendor/list", map);
+    return new ModelAndView("vendor/order/list", map);
   }
 
   /**
@@ -98,7 +98,7 @@ class VendorOrderController {
 
     map.put("orderDTO", orderDTO);
 
-    return new ModelAndView("vendor/detail", map);
+    return new ModelAndView("vendor/order/detail", map);
   }
 
   /**

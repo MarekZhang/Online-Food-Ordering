@@ -38,4 +38,18 @@ public interface ProductInfoService {
    * increase the stock
    */
   void increaseStock(List<CartDTO> cart);
+
+  /**
+   * product on shelf
+   * @param productId
+   * @return
+   */
+  ProductInfo display(String productId);
+
+  /**
+   * product off shelf
+   * @param productId
+   * @return
+   */
+  ProductInfo offShelf(String productId);
 }

@@ -1,20 +1,12 @@
-package com.imooc.takeaway.domain;
-
-import org.hibernate.annotations.DynamicUpdate;
+package com.imooc.takeaway.form;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import lombok.Data;
 
-@Entity
 @Data
-@DynamicUpdate
-public class ProductInfo {
+public class ProductForm {
 
-  @Id
   private String productId;
 
   private String productName;

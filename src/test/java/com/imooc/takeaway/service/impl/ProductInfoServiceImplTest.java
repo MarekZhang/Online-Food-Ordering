@@ -62,4 +62,16 @@ public class ProductInfoServiceImplTest extends TestCase {
     ProductInfo info = service.save(productInfo);
     Assert.assertNotNull(info);
   }
+
+  @Test
+  public void display() {
+    ProductInfo productInfo = service.display("#113");
+    Assert.assertEquals(0, (int)productInfo.getProductStatus());
+  }
+
+  @Test
+  public void offShelf() {
+    ProductInfo productInfo = service.offShelf("#113");
+    Assert.assertEquals(1, (int)productInfo.getProductStatus());
+  }
 }

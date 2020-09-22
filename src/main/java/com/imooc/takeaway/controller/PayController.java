@@ -71,6 +71,12 @@ public class PayController {
 
   }
 
+  /**
+   * Use proxy initiating a payment request
+   * @param orderId
+   * @param returnUrl
+   * @return
+   */
   @GetMapping("/proxy")
   public String proxy(@RequestParam("orderId") String orderId,
                       @RequestParam("returnUrl") String returnUrl) {

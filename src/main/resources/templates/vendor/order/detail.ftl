@@ -1,12 +1,12 @@
 <html>
-<head>
-    <title>HTML Examples</title>
-    <meta charset="utf-8">
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.min.css"
-          rel="stylesheet">
-</head>
+<#include "../../common/head.ftl">
 <body>
-<div class="container">
+<div id="wrapper" class="toggled">
+    <#--        sidebar-->
+    <#include "../../common/nav.ftl">
+    <#--        main content-->
+    <div id="page-content-wrapper">
+        <div class="container">
     <div class="row clearfix">
         <div class="col-md-6 column">
             <table class="table table-bordered table-hover table-condensed">
@@ -57,6 +57,8 @@
         </div>
     </div>
 
+</div>
+    </div>
 </div>
 </body>
 

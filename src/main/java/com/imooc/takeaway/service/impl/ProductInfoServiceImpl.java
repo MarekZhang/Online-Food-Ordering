@@ -15,7 +15,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service("ProductInfoService")
+@Slf4j
 public class ProductInfoServiceImpl implements ProductInfoService {
 
   @Autowired
@@ -67,5 +70,33 @@ public class ProductInfoServiceImpl implements ProductInfoService {
       productInfo.setProductStock(newStock);
       repository.save(productInfo);
     }
+  }
+
+  @Override
+  public ProductInfo display(String productId) {
+    ProductInfo productInfo = repository.findOne(productId);
+    if (productInfo == null) {
+      throw new OrderException(ExceptionEnum.PRODUCT_NOT_EXIST);
+    }
+    if (productInfo.getProductStatus() == 0) {
+      throw new OrderException(ExceptionEnum.PRODUCT_STATUS_ERROR);
+    }
+    //display product; 0 represents on sell
+    productInfo.setProductStatus(0);
+    return repository.save(productInfo);
+  }
+
+  @Override
+  public ProductInfo offShelf(String productId) {
+    ProductInfo productInfo = repository.findOne(productId);
+    if (productInfo == null) {
+      throw new OrderException(ExceptionEnum.PRODUCT_NOT_EXIST);
+    }
+    if (productInfo.getProductStatus() == 1) {
+      throw new OrderException(ExceptionEnum.PRODUCT_STATUS_ERROR);
+    }
+    //display product; 0 represents on sell
+    productInfo.setProductStatus(1);
+    return repository.save(productInfo);
   }
 }

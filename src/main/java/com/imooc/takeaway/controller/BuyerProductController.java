@@ -29,6 +29,10 @@ public class BuyerProductController {
   @Resource(name = "ProductInfoService")
   ProductInfoService productInfoService;
 
+  /**
+   * transfer product data to front end
+   * @return
+   */
   @GetMapping("/list")
   public ResultVO list() {
     //1.find all on sale product
