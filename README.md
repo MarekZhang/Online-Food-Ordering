@@ -4,11 +4,12 @@ SpringBoot + WechatApp + Vue.js
 ## Running Environment
 
 ```
-centOS 7.3
-Maven 3.2.2
 Java 8
+Maven 3.2.2
+MySQL 5.1.17
 SpringBoot 1.5.2
 BootStrap 3.0.1
+centOS 7.3
 ```
 
 ## Running App
