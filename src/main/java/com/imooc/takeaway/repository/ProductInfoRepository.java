@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, String> {
   List<ProductInfo> findByProductStatusIn(Integer status);
+
+  List<ProductInfo> findByCategoryTypeIn(Integer categoryType);
 }

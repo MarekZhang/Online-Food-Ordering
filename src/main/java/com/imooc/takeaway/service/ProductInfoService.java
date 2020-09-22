@@ -52,4 +52,11 @@ public interface ProductInfoService {
    * @return
    */
   ProductInfo offShelf(String productId);
+
+  /**
+   * find by category type
+   * @param categoryType
+   * @return
+   */
+  List<ProductInfo> findByCategoryType(Integer categoryType);
 }

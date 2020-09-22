@@ -35,6 +35,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     return repository.findByProductStatusIn(ProductInfoEnum.ONSELL.getStatus());
   }
 
+
   @Override
   public ProductInfo findOne(String productId) {
     return repository.findOne(productId);
@@ -98,5 +99,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     //display product; 0 represents on sell
     productInfo.setProductStatus(1);
     return repository.save(productInfo);
+  }
+
+  @Override
+  public List<ProductInfo> findByCategoryType(Integer categoryType) {
+    return repository.findByCategoryTypeIn(categoryType);
   }
 }

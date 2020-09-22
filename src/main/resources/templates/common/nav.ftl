@@ -21,13 +21,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> Category <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">Operations</li>
-                <li><a href="/sell/seller/category/list">List</a></li>
-                <li><a href="/sell/seller/category/index">Add</a></li>
+                <li><a href="/sell/vendor/category/list">List</a></li>
+                <li><a href="/sell/vendor/category/index">Add</a></li>
             </ul>
         </li>
 
         <li>
-            <a href="/sell/seller/logout"><i class="fa fa-fw fa-list-alt"></i> Log Out</a>
+            <a href="/sell/vendor/logout"><i class="fa fa-fw fa-list-alt"></i> Log Out</a>
         </li>
     </ul>
 </nav>
