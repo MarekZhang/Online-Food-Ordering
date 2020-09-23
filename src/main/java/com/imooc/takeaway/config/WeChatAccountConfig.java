@@ -30,4 +30,15 @@ public class WeChatAccountConfig {
    * 异步通知url
    */
   private String notifyUrl;
+
+  /**
+   * weChat open platform appId
+   */
+  private String openAppId;
+
+  /**
+   * weChat open platform appSecret
+   */
+  private String openAppSecret;
+
 }

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>HTML Examples</title>
+    <title>Error Page</title>
     <meta charset="utf-8">
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 </head>

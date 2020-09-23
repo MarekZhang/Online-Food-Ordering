@@ -19,7 +19,9 @@ public enum ExceptionEnum {
   WECHAT_MPSERVICE_ERROR(20, "weChat mp service error"),
   ASYNC_NOTIFICATION_ORDER_AMOUNT_ERROR(21, "inconsistent order amount"),
   ORDER_COMPLETE_SUCCESSFULLY(22, "order completed"),
-  PRODUCT_STATUS_ERROR(23, "product status error")
+  PRODUCT_STATUS_ERROR(23, "product status error"),
+  UNAUTHORIZED_VENDOR_ERROR(24, "unauthorized vendor user, failed to login"),
+  SUCCESSFULLY_LOGOUT(25, "successfully logged out")
   ;
   private Integer code;
   private String msg;
