@@ -35,3 +35,4 @@ weChatUrl:
 #  openAuthRedirectUrl is the redirect url after scanning the qr code
   openAuthRedirectUrl: http://markzhang.natapp1.cc/sell/vendor/login
   projectUrl: http://markzhang.natapp1.cc
+  qrAuthorizationReturnUrl: /sell/vendor/login

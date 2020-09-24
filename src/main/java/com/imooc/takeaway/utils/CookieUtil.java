@@ -21,17 +21,17 @@ public class CookieUtil {
 
   /**
    * get cookie(named token)
-   *
    * @param request
    * @param cookieName
    * @return
    */
   public static Cookie getCookie(HttpServletRequest request, String cookieName) {
-
     Cookie[] cookies = request.getCookies();
-    for (Cookie cookie : cookies) {
-      if (cookie.getName().equalsIgnoreCase(cookieName)) {
-        return cookie;
+    if(cookies != null){
+      for (Cookie cookie : cookies) {
+        if (cookie.getName().equalsIgnoreCase(cookieName)) {
+          return cookie;
+        }
       }
     }
     return null;

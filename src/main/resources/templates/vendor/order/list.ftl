@@ -71,6 +71,36 @@
         </div>
     </div>
     </body>
-
-
 </html>
+
+
+<script>
+    var webSocket = null;
+    if('WebSocket' in window){
+        webSocket = new WebSocket('ws://markzhang.natapp1.cc/sell/webSocket');
+    }else{
+        alert("current browser does not support web socket");
+    }
+
+    webSocket.onopen = function(event){
+        console.log("connection set up");
+    }
+
+    webSocket.onclose = function(event){
+        console.log("web socket disconnected");
+    };
+
+    webSocket.onerror = function(event){
+        alert("web socket connection error");
+    };
+
+    webSocket.onmessage = function(event){
+        console.log("new message received: " + event.data);
+    };
+
+    window.onbeforeunload = function(event){
+        webSocket.close();
+    };
+
+
+</script>

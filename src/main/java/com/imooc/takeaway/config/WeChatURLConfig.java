@@ -14,4 +14,6 @@ public class WeChatURLConfig {
   private String openAuthRedirectUrl;
 
   private String projectUrl;
+
+  private String qrAuthorizationReturnUrl;
 }
