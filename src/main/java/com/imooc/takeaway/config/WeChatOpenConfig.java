@@ -17,13 +17,18 @@ public class WeChatOpenConfig {
   @Bean
   public WxMpService wxOpenService() {
     WxMpService wxMpService = new WxMpServiceImpl();
-    wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
+    wxMpService.setWxMpConfigStorage(openWxMpConfigStorage());
 
     return wxMpService;
   }
 
+  /**
+   * @Bean 根据函数名称配置bean名称，此处在openWxMpConfigStorage前加了open是为了与WeChatAccountConfig做授权部分
+   * 的wxMpConfigStorage配置区分开，否则授权部分会加载appId为openappId
+   * @return
+   */
   @Bean
-  public WxMpConfigStorage wxMpConfigStorage(){
+  public WxMpConfigStorage openWxMpConfigStorage(){
     WxMpDefaultConfigImpl wxMpDefaultConfig = new WxMpDefaultConfigImpl();
     wxMpDefaultConfig.setAppId(weChatAccountConfig.getOpenAppId());
     wxMpDefaultConfig.setSecret(weChatAccountConfig.getOpenAppSecret());

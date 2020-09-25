@@ -15,6 +15,7 @@
                     <th>Order Id</th>
                     <th>Order Amount</th>
                     <th>Buyer Phone Number</th>
+                    <th>Delivery Address </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                     <td>${orderDTO.orderId}</td>
                     <td>${orderDTO.orderAmount}</td>
                     <td>${orderDTO.buyerPhone}</td>
+                    <td>${orderDTO.buyerAddress}</td>
                 </tr>
                 </tbody>
             </table>

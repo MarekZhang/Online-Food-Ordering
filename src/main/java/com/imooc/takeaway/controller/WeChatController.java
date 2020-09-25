@@ -51,7 +51,7 @@ public class WeChatController {
   @GetMapping("/authorize")
   public String authorize(@RequestParam("returnUrl") String returnURL) {
     String redirectURL = weChatURLConfig.getServerUrl() + "/sell/wechat/userInfo";//得到access_token之后backend内部跳转的下一结点以获取openid
-    String builtURL = wxMpService.getOAuth2Service().buildAuthorizationUrl(redirectURL, WxConsts.OAuth2Scope.SNSAPI_BASE, URLEncoder.encode(returnURL));
+    String builtURL = wxMpService.getOAuth2Service().buildAuthorizationUrl(redirectURL, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnURL));
 
     return "redirect:" + builtURL;
   }

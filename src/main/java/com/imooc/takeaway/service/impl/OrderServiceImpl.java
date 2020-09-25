@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
     productInfoService.decreaseStock(cartDTOS);
 
     //5. send message to web socket
-    webSocket.broadcast("a new order created");
+    webSocket.broadcast(orderDTO.getOrderId());
 
     return orderDTO;
   }

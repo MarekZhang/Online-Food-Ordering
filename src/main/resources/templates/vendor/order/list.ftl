@@ -1,5 +1,5 @@
 <html>
-    <#include "../../common/head.ftl">
+<#include "../../common/head.ftl">
     <body>
     <div id="wrapper" class="toggled">
 <#--        sidebar-->
@@ -70,10 +70,34 @@
             </div>
         </div>
     </div>
+<#--pop up window-->
+    <div class="modal fade" id="orderAlert" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        New order alert
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    You received a new order
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="javascript:document.getElementById('altertAudio').pause()" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="orderDetail" class="btn btn-primary">Order details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <video id="altertAudio" loop muted autoplay>
+        <source src="/sell/audio/alert.mp3" type="audio/mpeg">
+    </video>
     </body>
 </html>
 
-
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
     var webSocket = null;
     if('WebSocket' in window){
@@ -96,6 +120,11 @@
 
     webSocket.onmessage = function(event){
         console.log("new message received: " + event.data);
+        $('#orderAlert').modal('show');
+        document.getElementById('altertAudio').play();
+        $('#orderDetail').on("click", function(){
+            location.href="/sell/vendor/order/detail?orderId="+event.data;
+        });
     };
 
     window.onbeforeunload = function(event){
