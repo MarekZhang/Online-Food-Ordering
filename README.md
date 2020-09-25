@@ -28,7 +28,7 @@ Product screenshot
 
 ## Tech Stack
 1. Java 8
-2. Spring Boot 1.5.2(Freemarker, websocket, JPA)
+2. Spring Boot 1.5.2(Freemarker, Websocket, JPA, Junit)
 3. WeChat authorization, payment, open platform API
 4. MySQL
 5. Redis
