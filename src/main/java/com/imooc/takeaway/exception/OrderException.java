@@ -2,6 +2,9 @@ package com.imooc.takeaway.exception;
 
 import com.imooc.takeaway.enums.ExceptionEnum;
 
+import lombok.Getter;
+
+@Getter
 public class OrderException extends RuntimeException {
   private Integer code;
 
