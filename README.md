@@ -7,6 +7,8 @@ Customers can order food, make payment on their phones through the WeChat App. T
 
 To log in the admin site, scanning the WeChat QR code is used for authentication. When an order is placed the owner is notified by a popup window and alert audio. Products detials (including display pictures, price, stock, status, descrptions and etc) and products categories can be modified by the owner on the admin site. After the food is delivered, the order can be completed by the resturant owner.
 
+To handle the potential high concurrency situation, a simple Redis distributed lock is desinged using SETNX and GETSET command.
+
 ## Product
 
 Responsive design
