@@ -28,13 +28,14 @@ Product screenshot
 
 ## Tech Stack
 1. Java 8
-2. Spring Boot 1.5.2
+2. Spring Boot 1.5.2(Freemarker, Websocket, JPA, Junit)
 3. WeChat authorization, payment, open platform API
-4. HTML 5
-5. Freemarker
+4. MySQL
+5. Redis
 6. JQuery
 7. Bootstrap
 8. CSS3
+9. HTML 5
 
 ## Tools
 - [IntelliJ IDEA 2020.1](https://www.jetbrains.com/idea/)
