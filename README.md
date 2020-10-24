@@ -1,13 +1,11 @@
 # Online-Food-Ordering-System
 
 ## Project Description
-RESTful food ordering WeChat App and restaurant owner admin site.
+Customers can order food, make a payment on their phones through the WeChat App. They can also cancel an order and refund their transaction.
 
-Customers can order food, make a payment on their phones through the WeChat App. They can also cancel an order and refund their payment.
+To log in to the admin site, scanning the WeChat QR code is used for authentication. When an order is placed, a popup window and alert audio will notify the owner. The restaurant owner can modify product details (including display pictures, price, stock, status, descriptions, etc.) and product categories. After the food is delivered, the order can be completed by the restaurant owner.
 
-To log in to the admin site, scanning the WeChat QR code is used for authentication. When an order is placed the owner is notified by a popup window and alert audio. Product details (including display pictures, price, stock, status, descriptions, etc) and product categories can be modified by the owner on the admin site. After the food is delivered, the order can be completed by the restaurant owner.
-
-To handle the potential high concurrency situation, a simple Redis distributed lock is designed using SETNX and GETSET command.
+A simple Redis distributed lock is designed using SETNX and GETSET command to handle the potential high concurrency situation.
 
 ## Product
 
