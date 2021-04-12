@@ -130,6 +130,4 @@
     window.onbeforeunload = function(event){
         webSocket.close();
     };
-
-
 </script>

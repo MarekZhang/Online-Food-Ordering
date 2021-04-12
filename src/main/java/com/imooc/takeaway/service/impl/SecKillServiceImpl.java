@@ -77,6 +77,6 @@ public class SecKillServiceImpl implements SecKillService {
     }
 
     //unlock
-    redisLock.unlock(productId);
+    redisLock.unlock(productId, value);
   }
 }

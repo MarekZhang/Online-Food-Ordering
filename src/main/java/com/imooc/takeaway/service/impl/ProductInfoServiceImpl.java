@@ -9,6 +9,8 @@ import com.imooc.takeaway.repository.ProductInfoRepository;
 import com.imooc.takeaway.service.ProductInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,9 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service("ProductInfoService")
 @Slf4j
 public class ProductInfoServiceImpl implements ProductInfoService {
-
+  private static final int TIMEOUT = 5000;
   @Autowired
   ProductInfoRepository repository;
+  @Autowired
+  RedisLock redisLock;
 
   @Override
   public Page<ProductInfo> findAll(Pageable pageable) {
@@ -42,6 +46,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
   }
 
   @Override
+  @CacheEvict(cacheNames = "productList", key = "'products'")
   public ProductInfo save(ProductInfo productInfo) {
     return repository.save(productInfo);
   }
@@ -52,11 +57,14 @@ public class ProductInfoServiceImpl implements ProductInfoService {
       ProductInfo productInfo = repository.findOne(cartDTO.getProductId());
       if(productInfo == null)
         throw new OrderException(ExceptionEnum.PRODUCT_NOT_EXIST);
+      String value = String.valueOf(System.currentTimeMillis() + TIMEOUT);
+      redisLock.lock(productInfo.getProductId(), value);
       int newStock = productInfo.getProductStock() - cartDTO.getProductQuantity();
       if(newStock < 0)
         throw new OrderException(ExceptionEnum.PRODUCT_STOCK_ERROR);
       productInfo.setProductStock(newStock);
       repository.save(productInfo);
+      redisLock.unlock(productInfo.getProductId(), value);
     }
   }
 
@@ -66,10 +74,13 @@ public class ProductInfoServiceImpl implements ProductInfoService {
       ProductInfo productInfo = repository.findOne(cartDTO.getProductId());
       if(productInfo == null)
         throw new OrderException(ExceptionEnum.PRODUCT_NOT_EXIST);
+      String value = String.valueOf(System.currentTimeMillis() + TIMEOUT);
+      redisLock.lock(productInfo.getProductId(), value);
       int newStock = productInfo.getProductStock() + cartDTO.getProductQuantity();
 
       productInfo.setProductStock(newStock);
       repository.save(productInfo);
+      redisLock.unlock(productInfo.getProductId(), value);
     }
   }
 

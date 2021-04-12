@@ -47,6 +47,8 @@ public class OrderServiceImpl implements OrderService {
   WebSocket webSocket;
   @Resource(name = "PayService")
   PayService payService;
+  @Resource(name = "RedisLock")
+  RedisLock redisLock;
 
   @Override
   @Transactional
@@ -82,6 +84,7 @@ public class OrderServiceImpl implements OrderService {
     List<CartDTO> cartDTOS = orderDTO.getOrderDetailList().stream().
             map(e -> new CartDTO(e.getProductId(), e.getProductQuantity())).collect(Collectors.toList());
     productInfoService.decreaseStock(cartDTOS);
+
 
     //5. send message to web socket
     webSocket.broadcast(orderDTO.getOrderId());

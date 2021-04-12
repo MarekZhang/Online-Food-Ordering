@@ -20,7 +20,6 @@ public class GlobalExceptionHandler {
   WeChatURLConfig weChatURLConfig;
 
   @ExceptionHandler(value = AuthorizationException.class)
-  @ResponseStatus(HttpStatus.FORBIDDEN)
   public ModelAndView authorizationHandler() {
     return new ModelAndView("redirect:" +
             weChatURLConfig.getProjectUrl() +

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service("RedisLock")
 public class RedisLock {
-
   @Autowired
   StringRedisTemplate stringRedisTemplate;
 
@@ -39,9 +38,9 @@ public class RedisLock {
    * unlock
    * @param key productId
    */
-  public void unlock(String key) {
-    String value = stringRedisTemplate.opsForValue().get(key);
-    if (value != null && value.length() != 0) {
+  public void unlock(String key, String value) {
+    String oldValue = stringRedisTemplate.opsForValue().get(key);
+    if (oldValue != null && oldValue.length() != 0 && oldValue.equals(value)) {
       stringRedisTemplate.delete(key);
     }
   }

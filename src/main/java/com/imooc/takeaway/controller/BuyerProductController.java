@@ -10,6 +10,7 @@ import com.imooc.takeaway.viewObject.ProductVO;
 import com.imooc.takeaway.viewObject.ResultVO;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ public class BuyerProductController {
    * @return
    */
   @GetMapping("/list")
+  @Cacheable(cacheNames = "productList", key = "'products'")
   public ResultVO list() {
     //1.find all on sale product
     List<ProductInfo> productInfoList = productInfoService.findOnSell();
